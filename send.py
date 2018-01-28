@@ -4,7 +4,7 @@ from time import sleep
 from sys import exit
 import csv
 
-def addEntry(name, key):
+def addEntry(name, key, doctorFirstName, doctorLastName, patientFirstName, patientLastName, diagnosis, diagnosisDate, conditionStart, doctorPhone, patientPhone):
 
     parent = generate_keypair()
 
@@ -25,10 +25,13 @@ def addEntry(name, key):
     bicycle_asset = {
         'data': {
             'info': {
-                'Description': 'You are sick.',
-                'Doctor Name': 'Dr. John',
-                'Patient Name': name,
-                'Patient Phone Number': '1234567'
+                'Doctor First Name': doctorFirstName,
+                'Doctor Last Name': doctorLastName,
+                'Patient First Name': patientFirstName,
+                'Patient Last Name': patientLastName,
+                'Diagnosis', diagnosis,
+                'Diagnosis Date', diagnosisDate,
+                'Condition Start', conditionStart
             },
             'link': {
                 'Current': currentNode,
