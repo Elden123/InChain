@@ -20,6 +20,8 @@ bicycle_asset = {
         'bicycle': {
             'serial_number': '4857dvjdhv7',
             'manufacturer': 'bkfab'
+            'points to': 'as;dflkj'
+            'points from': 'as;dlkf'
         },
     },
 }
