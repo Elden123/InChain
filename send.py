@@ -3,48 +3,54 @@ from bigchaindb_driver.crypto import generate_keypair
 from time import sleep
 from sys import exit
 
-#alice = generate_keypair()
-#private key 7u4AMhnb4RDRZmsEmrVxo9R8Mdpd8qA8erGGC9yWtJq1
-#public key 5JGVfHkmTdv8cdxbHtfqjsP35sn1uSXi8csFbi4n1SoM
-public_keyA = '5JGVfHkmTdv8cdxbHtfqjsP35sn1uSXi8csFbi4n1SoM'
-private_keyA = '7u4AMhnb4RDRZmsEmrVxo9R8Mdpd8qA8erGGC9yWtJq1'
+def addEntry(name, key):
 
+    parent = generate_keypair()
 
-tokens = {}
-tokens['app_id'] = 'c3080fbc'
-tokens['app_key'] = 'cdf98e4878062f34c2da1b94fab0b009'
-bdb = BigchainDB('https://test.bigchaindb.com', headers=tokens)#localhost:9984
+    tokens = {}
+    bdb = BigchainDB('http://35.196.237.62:9984/', headers=tokens)#localhost:9984
 
-bicycle_asset = {
-    'data': {
-        'bicycle': {
-            'serial_number': '4857dvjdhv7',
-            'manufacturer': 'bkfab'
-            'points to': 'as;dflkj'
-            'points from': 'as;dlkf'
+    number = key
+    currentNode = str(number)
+    nextNode = ""
+    search = str(number)
+
+    while bdb.assets.get(search=str(number)) != []:
+        print("Current Node: " + currentNode)
+        currentNode = bdb.assets.get(search=str(number))[0]['data']['link']['Next']
+        number += 1
+
+    nextNode = str(int(currentNode) + 1)
+
+    bicycle_asset = {
+        'data': {
+            'info': {
+                'Description': 'You are sick.',
+                'Doctor Name': 'Dr. John',
+                'Patient Name': name,
+                'Patient Phone Number': '1234567'
+            },
+            'link': {
+                'Current': currentNode,
+                'Next': nextNode
+            }
         },
-    },
-}
+    }
 
-bicycle_asset_metadata = {
-    'planet': 'earth'
-}
+    prepared_creation_tx = bdb.transactions.prepare(
+        operation='CREATE',
+        signers=parent.public_key,
+        asset=bicycle_asset,
+    )
 
-prepared_creation_tx = bdb.transactions.prepare(
-    operation='CREATE',
-    signers=public_keyA,
-    asset=bicycle_asset,
-    metadata=bicycle_asset_metadata
-)
+    fulfilled_creation_tx = bdb.transactions.fulfill(
+        prepared_creation_tx,
+        private_keys=parent.private_key
+    )
 
-fulfilled_creation_tx = bdb.transactions.fulfill(
-    prepared_creation_tx,
-    private_keys=private_keyA
-)
-
-sent_creation_tx = bdb.transactions.send(fulfilled_creation_tx)
+    sent_creation_tx = bdb.transactions.send(fulfilled_creation_tx)
+    print(bdb.assets.get(search=str(currentNode)))
 
 print()
-print(bdb.assets.get(search='4857dvjdhv7'))
-#print(alice)
-print()
+#addEntry("Zak", 1785043)
+#addEntry("Nolan", 2302832)
