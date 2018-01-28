@@ -6,7 +6,10 @@
     <title>InChain</title>
     <script>
         function handleThings() {
-            alert(1);
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "http://35.196.237.62/okay", false ); // false for synchronous request
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
         }
     </script>
   </head>
@@ -39,7 +42,7 @@
           Date of Diagnosis: " + getConditionStart() + "
           <input type='text' name = 'diagnosisdate'><br>
         </div>
-        <button onclick='handleThings()' type='submit'>Submit</button>
+        <button onclick='handleThings()' type='submit'>Okay</button>
       </form>
     </div>
   </body>

@@ -12,4 +12,4 @@ def sendMessage(toNumber, fromNumber, message):
         from_ = fromNumber,
         body = message)
 
-sendMessage("7853200582", "7165314545", "Hey Tony")
+#sendMessage("7853200582", "7165314545", "Hey Tony")
