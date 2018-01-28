@@ -10,7 +10,6 @@ def addEntry(name, key):
 
     tokens = {}
     bdb = BigchainDB('http://35.196.237.62:9984/', headers=tokens)#localhost:9984
-
     number = key
     currentNode = str(number)
     nextNode = ""
