@@ -35,3 +35,8 @@ class patient:
 
     def getHTML():
         return(self.html)
+
+    def handler(self, namefirst):
+        for key in self.html:
+            if key == namefirst:
+                return (self.html[key])

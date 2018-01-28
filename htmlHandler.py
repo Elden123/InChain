@@ -1,4 +1,6 @@
 from injury.py import getHTML
 
 def handler(namefirst):
-    return(namefirst.getHTML())
+    for key in getHTML():
+        if key == namefirst:
+            return self.html[key]
