@@ -2,6 +2,7 @@ from bigchaindb_driver import BigchainDB
 from bigchaindb_driver.crypto import generate_keypair
 from time import sleep
 from sys import exit
+import csv
 
 def addEntry(name, key):
 
@@ -51,6 +52,32 @@ def addEntry(name, key):
     sent_creation_tx = bdb.transactions.send(fulfilled_creation_tx)
     print(bdb.assets.get(search=str(currentNode)))
 
+def addUser(name, key):
+    with open('keys.csv', 'a') as csvfile:
+        fieldnames = ['name', 'key']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        #writer.writeheader()
+        writer.writerow({'name': name, 'key': str(key)})
+
+def userExists(name):
+     with open('keys.csv') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',')
+        for row in reader:
+            if(row['name'] == name):
+                return(True)
+        return(False)
+
+def getUserKey(name):
+    with open('keys.csv') as csvfile:
+       reader = csv.DictReader(csvfile, delimiter=',')
+       for row in reader:
+           if(row['name'] == name):
+               return(row['key'])
+       return(0)
+
+
 print()
+print(getUserKey("Eric"))
+#addUser("Eric", 3576895)
 #addEntry("Zak", 1785043)
 #addEntry("Nolan", 2302832)
