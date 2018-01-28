@@ -1,4 +1,4 @@
-class injury:
+class patient:
     def __init__ (self, data):
         self.doctorFirstName = data['doctorfirstname']
         self.doctorLastName = data['doctorlastname']
