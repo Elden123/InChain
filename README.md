@@ -1,4 +1,5 @@
-# InChain, a blockchain for medical history
+# InChain
+Blockchain for medical history.
 
 ## Inspiration
 While thinking about the prompt, we realized the untapped potential a comprehensive medical database would offer. With more data on medical issues, far better algorithms could be developed for things such as predicting sports injuries, and assessing insurance prices.
