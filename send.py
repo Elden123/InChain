@@ -9,11 +9,15 @@ def addEntry(name, key, doctorFirstName, doctorLastName, patientFirstName, patie
     parent = generate_keypair()
 
     tokens = {}
+    tokens['app_id'] = 'c3080fbc'
+    tokens['app_key'] = 'cdf98e4878062f34c2da1b94fab0b009'
     bdb = BigchainDB('http://35.196.237.62:9984/', headers=tokens)#localhost:9984
     number = key
     currentNode = str(number)
     nextNode = ""
     search = str(number)
+
+    print(bdb.assets.get(search=str(currentNode)))
 
     while bdb.assets.get(search=str(number)) != []:
         print("Current Node: " + currentNode)
@@ -79,9 +83,33 @@ def getUserKey(name):
                return(row['key'])
        return(0)
 
+def viewEntry(name, key):
+
+    parent = generate_keypair()
+
+    tokens = {}
+    tokens['app_id'] = 'c3080fbc'
+    tokens['app_key'] = 'cdf98e4878062f34c2da1b94fab0b009'
+    bdb = BigchainDB('http://35.196.237.62:9984/', headers=tokens)#localhost:9984
+    number = key
+    currentNode = str(number)
+    nextNode = ""
+    search = str(number)
+
+    print(bdb.assets.get(search=str(currentNode)))
+
+    while bdb.assets.get(search=str(number)) != []:
+        print("Current Node: " + currentNode)
+        currentNode = bdb.assets.get(search=str(number))[0]['data']['link']['Next']
+        number += 1
+
 
 print()
-print(getUserKey("Eric"))
+print(getUserKey("Donald"))
 #addUser("Eric", 3576895)
 #addEntry("Zak", 1785043)
-#addEntry("Nolan", 2302832)
+addEntry("Donald", 3576895, "ccccccc", "a", "a", "a", "a", "a", "a", "a", "a")
+print()
+print()
+print()
+viewEntry("Eric", 3576895)
