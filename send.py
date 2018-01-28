@@ -4,24 +4,25 @@ from time import sleep
 from sys import exit
 import csv
 
-def addEntry(name, key, doctorFirstName, doctorLastName, patientFirstName, patientLastName, diagnosis, diagnosisDate, conditionStart, doctorPhone, patientPhone):
+def addEntry(name, key):
 
     parent = generate_keypair()
 
     tokens = {}
-    tokens['app_id'] = 'c3080fbc'
-    tokens['app_key'] = 'cdf98e4878062f34c2da1b94fab0b009'
-    bdb = BigchainDB('http://35.196.237.62:9984/', headers=tokens)#localhost:9984
-    number = key
+
+    bdb = BigchainDB('http://35.196.237.62:9984/')#localhost:9984
+    number = int(key)
     currentNode = str(number)
     nextNode = ""
     search = str(number)
-
-    print(bdb.assets.get(search=str(currentNode)))
+    print("number" + str(number))
+    print(bdb.assets.get(search=str(number)))
 
     while bdb.assets.get(search=str(number)) != []:
         print("Current Node: " + currentNode)
-        currentNode = bdb.assets.get(search=str(number))[0]['data']['link']['Next']
+
+        currentNode = bdb.assets.get(search=str(number))[0]['data']['link']['Current']
+        print(bdb.assets.get(search=str(number)))
         number += 1
 
     nextNode = str(int(currentNode) + 1)
@@ -29,15 +30,7 @@ def addEntry(name, key, doctorFirstName, doctorLastName, patientFirstName, patie
     bicycle_asset = {
         'data': {
             'info': {
-                'Doctor First Name': doctorFirstName,
-                'Doctor Last Name': doctorLastName,
-                'Patient First Name': patientFirstName,
-                'Patient Last Name': patientLastName,
-                'Diagnosis': diagnosis,
-                'Diagnosis Date': diagnosisDate,
-                'Condition Start': conditionStart,
-                'Doctor Phone': doctorPhone,
-                'Patient Phone': patientPhone
+                'Data': 'Things'
             },
             'link': {
                 'Current': currentNode,
@@ -88,8 +81,8 @@ def viewEntry(name, key):
     parent = generate_keypair()
 
     tokens = {}
-    tokens['app_id'] = 'c3080fbc'
-    tokens['app_key'] = 'cdf98e4878062f34c2da1b94fab0b009'
+    tokens['app_id'] = 'a27cee86'
+    tokens['app_key'] = 'a8229efe79f615dc4b901120ffa2e366'
     bdb = BigchainDB('http://35.196.237.62:9984/', headers=tokens)#localhost:9984
     number = key
     currentNode = str(number)
@@ -105,11 +98,11 @@ def viewEntry(name, key):
 
 
 print()
-print(getUserKey("Donald"))
-#addUser("Eric", 3576895)
-#addEntry("Zak", 1785043)
-addEntry("Donald", 3576895, "ccccccc", "a", "a", "a", "a", "a", "a", "a", "a")
+#addUser("Jon", 76512354)
+addEntry("Eric", getUserKey("Eric"))
+
+#addEntry("D", 2630754, "ccccccc", "a", "a", "a", "a", "a", "a", "a", "a")
 print()
 print()
 print()
-viewEntry("Eric", 3576895)
+#
