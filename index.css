@@ -18,13 +18,24 @@ html {
 
 body {
   position: relative;
-  top: 33%;
+  top: 25%;
   padding: 0;
   margin: 0;
 }
+
+button{
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 #home {
   text-align: center;
-
+  font-size: 200%;
   color: white;
   font-family: sans-serif;
 }
