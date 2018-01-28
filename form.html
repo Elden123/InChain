@@ -9,12 +9,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
     <script src="form.js"></script>
+    <script src="jquery.serializeJSON-master/jquery.serializejson.js"></script>
   </head>
 
   <body>
-    <div id="form">
+    <div id="form" onsubmit="return false">
       <h1 class="mdc_typography--display3" id="data"> Form </h1>
-      <form>
+      <form name = "data" id="data" >
         <div id="doctorfirstname">
           First Name of Doctor:
           <input type="text" name = "doctorfirstname"><br>

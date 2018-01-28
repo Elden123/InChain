@@ -1,6 +1,10 @@
+
+
 $(document).ready(function(){
     $("form").submit(function(event){
-      console.log($(this).serialize());
-      event.preventDefault();
+      var data = ($("form").serializeJSON());
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('GET','/server', true);
+      xhttp.send(data);
     });
 });
