@@ -5,14 +5,15 @@ from sys import exit
 
 alice, bob = generate_keypair(), generate_keypair()
 
-bdb_root_url = 'https://example.com:9984'  # Use YOUR BigchainDB Root URL here
-
-bdb = BigchainDB(bdb_root_url)
+tokens = {}
+tokens['app_id'] = 'c3080fbc'
+tokens['app_key'] = 'cdf98e4878062f34c2da1b94fab0b009'
+bdb = BigchainDB('https://test.bigchaindb.com', headers=tokens)
 
 bicycle_asset = {
     'data': {
         'bicycle': {
-            'serial_number': 'abcd1234',
+            'serial_number': 'asdfasdfasdf',
             'manufacturer': 'bkfab'
         },
     },
@@ -89,3 +90,6 @@ print("Is Bob the owner?",
 
 print("Was Alice the previous owner?",
     fulfilled_transfer_tx['inputs'][0]['owners_before'][0] == alice.public_key)
+print()
+
+print(bdb.assets.get(search='asdfasdfasdf'))
