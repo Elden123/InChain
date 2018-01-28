@@ -29,9 +29,11 @@ def addEntry(name, key, doctorFirstName, doctorLastName, patientFirstName, patie
                 'Doctor Last Name': doctorLastName,
                 'Patient First Name': patientFirstName,
                 'Patient Last Name': patientLastName,
-                'Diagnosis', diagnosis,
-                'Diagnosis Date', diagnosisDate,
-                'Condition Start', conditionStart
+                'Diagnosis': diagnosis,
+                'Diagnosis Date': diagnosisDate,
+                'Condition Start': conditionStart,
+                'Doctor Phone': doctorPhone,
+                'Patient Phone': patientPhone
             },
             'link': {
                 'Current': currentNode,
