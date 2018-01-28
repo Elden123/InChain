@@ -1,4 +1,4 @@
-# InChain
+# inChain
 Blockchain for medical history.
 
 ## Inspiration
